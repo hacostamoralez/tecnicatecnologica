@@ -1508,7 +1508,7 @@ async function mostrarResultado(alumno) {
         </div>
 
         ${
-            String(alumno.curso || "").trim().toUpperCase() === "5A"
+            ["5A", "1B"].includes(String(alumno.curso || "").trim().toUpperCase())
             ? `
                 <button
                     type="button"
@@ -1535,7 +1535,7 @@ async function mostrarResultado(alumno) {
    CENTRALIZADOR DE NOTAS - SOLO 5A
 ================================================= */
 
-const MATERIAS_CENTRALIZADOR = [
+const MATERIAS_CENTRALIZADOR_5A = [
     ["LCO", "LENGUA CASTELLANA, ORIGINARIA Y EXTRANJERA"],
     ["LEX", "LENGUA EXTRANJERA"],
     ["SOC", "CIENCIAS SOCIALES"],
@@ -1549,6 +1549,20 @@ const MATERIAS_CENTRALIZADOR = [
     ["CFS", "COSMOVISIONES FILOSOFÍA Y PSICOLOGÍA"],
     ["VER", "VALORES ESPIRITUALIDAD Y RELIGIONES"],
     ["TTE", "TÉCNICA TECNOLÓGICA ESPECIALIZADA"]
+];
+
+const MATERIAS_CENTRALIZADOR_1B = [
+    ["LCO", "LENGUA CASTELLANA, ORIGINARIA Y EXTRANJERA"],
+    ["LEX", "LENGUA EXTRANJERA"],
+    ["SOC", "CIENCIAS SOCIALES"],
+    ["EFD", "EDUCACIÓN FISICA Y DEPORTES"],
+    ["EMU", "EDUCACIÓN MUSICAL"],
+    ["APV", "ARTES PLÁSTICAS Y VISUALES"],
+    ["MAT", "MATEMÁTICA"],
+    ["TTE", "TÉCNICA TECNOLÓGICA GENERAL"],
+    ["BIO", "CIENCIAS NATURALES: BIOLOGÍA GEOGRAFÍA"],
+    ["CFS", "COSMOVISIONES FILOSOFÍA Y PSICOLOGÍA"],
+    ["VER", "VALORES ESPIRITUALIDAD Y RELIGIONES."]
 ];
 
 function mostrarValorCentralizador(valor) {
@@ -1568,7 +1582,9 @@ async function mostrarCentralizador() {
 
     if (!contenedor || !alumnoActual) return;
 
-    if (String(alumnoActual.curso || "").trim().toUpperCase() !== "5A") {
+    const cursoCentralizador = String(alumnoActual.curso || "").trim().toUpperCase();
+
+    if (cursoCentralizador !== "5A" && cursoCentralizador !== "1B") {
         return;
     }
 
@@ -1627,7 +1643,11 @@ async function mostrarCentralizador() {
             return centralizador[nombreColumna] ?? centralizador[nombreColumna.toLowerCase()];
         };
 
-        MATERIAS_CENTRALIZADOR.forEach(([codigo, nombre]) => {
+        const materiasCentralizador = cursoCentralizador === "1B"
+            ? MATERIAS_CENTRALIZADOR_1B
+            : MATERIAS_CENTRALIZADOR_5A;
+
+        materiasCentralizador.forEach(([codigo, nombre]) => {
 
             filas += `
                 <tr>
@@ -1648,7 +1668,7 @@ async function mostrarCentralizador() {
                 </div>
 
                 <div style="text-align:center;color:#666;font-size:13px;margin-bottom:12px;">
-                    Curso: 5A
+                    Curso: ${escapeHTML(cursoCentralizador)}
                 </div>
 
                 <div class="centralizador-tabla-contenedor">
