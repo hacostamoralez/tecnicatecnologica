@@ -93,6 +93,16 @@ button:hover {
     background: #0d4282;
 }
 
+.boton-cerrar-sesion {
+    margin-top: 10px;
+    background: #c62828;
+    font-size: 15px;
+}
+
+.boton-cerrar-sesion:hover {
+    background: #8e0000;
+}
+
 #resultado {
     margin-top: 30px;
 }
@@ -537,6 +547,79 @@ button:hover {
     color: #1557a6;
 }
 
+.dia-clase-informal {
+    background: #eef7ff;
+}
+
+.dia-clase-informal .estado-clase-informal {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1565c0;
+    border: 1px solid #90caf9;
+    font-weight: bold;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.motivo-clase-informal-detalle {
+    color: #455a64;
+    line-height: 1.4;
+}
+
+.motivo-clase-informal-detalle strong {
+    color: #1565c0;
+}
+
+/* Aviso de día sin clases en asistencia */
+.dia-no-clases {
+    background: #fff8e1;
+}
+
+.dia-no-clases .estado-no-clases {
+    display: inline-block;
+    background: #fff3cd;
+    color: #8a5a00;
+    border: 1px solid #ffe08a;
+    font-weight: bold;
+    padding: 6px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.motivo-no-clases-detalle {
+    color: #795548;
+    line-height: 1.4;
+}
+
+.motivo-no-clases-detalle strong {
+    color: #5d4037;
+}
+
+
+/* Reacciones del gatito al explorar la página */
+#gatoInteractivo.gracioso #gatoCuerpo { animation: gatoBroma .75s ease-in-out; }
+#gatoInteractivo.saltando #gatoCuerpo { animation: gatoSalto .65s ease-in-out; }
+#gatoInteractivo.asustado #gatoCuerpo { animation: gatoTemblor .5s ease-in-out; }
+@keyframes gatoBroma {
+    0%,100% { transform: rotate(0) scale(1); }
+    25% { transform: rotate(-15deg) scale(1.12); }
+    50% { transform: rotate(15deg) scale(1.12); }
+    75% { transform: rotate(-8deg) scale(1.06); }
+}
+@keyframes gatoSalto {
+    0%,100% { transform: translateY(0) scale(1); }
+    45% { transform: translateY(-18px) scale(1.12); }
+    70% { transform: translateY(0) scale(.96); }
+}
+@keyframes gatoTemblor {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-5px); }
+    40% { transform: translateX(5px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+}
+
 @media(max-width:500px) {
 
     .contenedor {
@@ -573,6 +656,135 @@ button:hover {
 
 }
 
+/* =================================================
+   CENTRALIZADOR DE NOTAS - SOLO 5A
+================================================= */
+.boton-centralizador {
+    margin-top: 10px;
+    background: #00897b;
+    font-size: 16px;
+}
+.boton-centralizador:hover { background: #00695c; }
+
+.centralizador-box {
+    margin-top: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    padding: 16px;
+    text-align: left;
+}
+.centralizador-titulo {
+    text-align: center;
+    color: #1557a6;
+    font-size: 19px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+.centralizador-tabla-contenedor { width: 100%; overflow-x: auto; }
+.centralizador-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+.centralizador-tabla th {
+    background: #f1f4f8;
+    color: #555;
+    font-weight: bold;
+    padding: 9px 5px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+.centralizador-tabla td {
+    padding: 9px 5px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    vertical-align: middle;
+}
+.centralizador-tabla th:first-child,
+.centralizador-tabla td:first-child {
+    text-align: left;
+    min-width: 210px;
+}
+.nota-centralizador { font-weight: bold; }
+.sin-nota { color: #999; font-weight: normal; }
+
+@media(max-width:500px) {
+    .centralizador-tabla { font-size: 11px; }
+    .centralizador-tabla th,
+    .centralizador-tabla td { padding: 8px 4px; }
+    .centralizador-tabla th:first-child,
+    .centralizador-tabla td:first-child { min-width: 190px; }
+}
+
+
+/* =================================================
+   GATITO INTERACTIVO
+================================================= */
+#gatoInteractivo {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    width: 76px;
+    height: 76px;
+    z-index: 9999;
+    cursor: grab;
+    user-select: none;
+    touch-action: none;
+    transition: left .8s ease, top .8s ease, transform .25s ease;
+    font-family: system-ui, sans-serif;
+}
+#gatoInteractivo:active { cursor: grabbing; }
+#gatoCuerpo {
+    font-size: 54px;
+    line-height: 1;
+    text-align: center;
+    filter: drop-shadow(0 3px 3px rgba(0,0,0,.18));
+    transition: transform .2s ease;
+}
+#gatoInteractivo.mirando #gatoCuerpo { transform: rotate(-7deg) scale(1.08); }
+#gatoInteractivo.sorprendido #gatoCuerpo { transform: scale(1.18) rotate(5deg); }
+#gatoMensaje {
+    position: absolute;
+    left: 50%;
+    bottom: 68px;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 14px;
+    padding: 6px 9px;
+    font-size: 11px;
+    color: #444;
+    white-space: nowrap;
+    box-shadow: 0 3px 12px rgba(0,0,0,.14);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .2s ease;
+}
+#gatoInteractivo.mensaje #gatoMensaje { opacity: 1; }
+#gatoCorazones {
+    position: absolute;
+    left: 50%;
+    top: -4px;
+    transform: translateX(-50%);
+    font-size: 20px;
+    opacity: 0;
+    pointer-events: none;
+}
+#gatoInteractivo.caricia #gatoCorazones {
+    opacity: 1;
+    animation: gatoCorazon 1s ease forwards;
+}
+@keyframes gatoCorazon {
+    from { transform: translate(-50%, 8px) scale(.7); opacity: 0; }
+    25% { opacity: 1; }
+    to { transform: translate(-50%, -32px) scale(1.2); opacity: 0; }
+}
+@media(max-width:500px) {
+    #gatoInteractivo { left: 8px; bottom: 10px; width: 64px; height: 64px; }
+    #gatoCuerpo { font-size: 46px; }
+    #gatoMensaje { bottom: 56px; font-size: 10px; }
+}
 </style>
 
 </head>
@@ -645,6 +857,14 @@ button:hover {
 
     </button>
 
+    <button
+        type="button"
+        class="boton-cerrar-sesion"
+        onclick="cerrarSesion()"
+    >
+        🚪 Cerrar sesión
+    </button>
+
 
     <div id="resultado"></div>
 
@@ -680,6 +900,90 @@ const INICIO_3T = "2026-08-01";
 
 const FIN_3T = "2026-12-31";
 
+
+/* =================================================
+   CONTROL DE CONSULTAS REPETIDAS
+================================================= */
+let temporizadorVisita = null;
+
+function iniciarCuentaRegresivaVisita(segundos) {
+
+    if (temporizadorVisita) {
+        clearInterval(temporizadorVisita);
+        temporizadorVisita = null;
+    }
+
+    const boton = document.querySelector('button[onclick="consultarNota()"]');
+    if (!boton || segundos <= 0) return;
+
+    const textoOriginal = "Consultar mi nota";
+
+    const actualizar = () => {
+
+        if (segundos <= 0) {
+            clearInterval(temporizadorVisita);
+            temporizadorVisita = null;
+            boton.disabled = false;
+            boton.style.opacity = "1";
+            boton.style.cursor = "pointer";
+            boton.textContent = textoOriginal;
+            return;
+        }
+
+        const horas = Math.floor(segundos / 3600);
+        const minutos = Math.floor((segundos % 3600) / 60);
+        const seg = segundos % 60;
+
+        let tiempo;
+
+        if (horas > 0) {
+            tiempo = `${horas} h ${minutos} min ${String(seg).padStart(2, "0")} s`;
+        } else {
+            tiempo = `${minutos} min ${String(seg).padStart(2, "0")} s`;
+        }
+
+        boton.disabled = true;
+        boton.style.opacity = "0.65";
+        boton.style.cursor = "not-allowed";
+        boton.textContent = `Podrás consultar nuevamente en ${tiempo}`;
+        segundos--;
+
+    };
+
+    actualizar();
+    temporizadorVisita = setInterval(actualizar, 1000);
+}
+
+/* =================================================
+   CERRAR SESIÓN
+================================================= */
+
+function cerrarSesion() {
+    alumnoActual = null;
+
+    const ci = document.getElementById("ci");
+    const fecha = document.getElementById("fecha_nacimiento");
+    const resultado = document.getElementById("resultado");
+
+    // El CI se mantiene visible al cerrar sesión.
+    if (fecha) fecha.value = "";
+    if (resultado) resultado.innerHTML = "";
+
+    if (temporizadorVisita) {
+        clearInterval(temporizadorVisita);
+        temporizadorVisita = null;
+    }
+
+    const botonConsultar = document.querySelector('button[onclick="consultarNota()"]');
+    if (botonConsultar) {
+        botonConsultar.disabled = false;
+        botonConsultar.style.opacity = "1";
+        botonConsultar.style.cursor = "pointer";
+        botonConsultar.textContent = "Consultar mi nota";
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 /* =================================================
    CONSULTAR
@@ -725,7 +1029,7 @@ async function consultarNota() {
 
             `&fecha_nacimiento=eq.${encodeURIComponent(fecha)}` +
 
-            `&select=id,nombre,curso,nota_1t,nota_2t,nota_3t,final`,
+            `&select=id,nombre,curso,ci,fecha_nacimiento,nota_1t,nota_2t`,
 
             {
 
@@ -773,12 +1077,38 @@ async function consultarNota() {
 
 
         /* =================================================
+           EVITAR CONSULTAS REPETIDAS DURANTE 60 MINUTOS
+        ================================================= */
+        const CLAVE_BLOQUEO_VISITA =
+            `ultima_consulta_nota_${alumnoActual.id}`;
+        const DURACION_BLOQUEO_VISITA = 60 * 60 * 1000;
+        const ultimaConsulta =
+            Number(localStorage.getItem(CLAVE_BLOQUEO_VISITA) || 0);
+        const tiempoTranscurrido = Date.now() - ultimaConsulta;
+
+        if (ultimaConsulta && tiempoTranscurrido < DURACION_BLOQUEO_VISITA) {
+            iniciarCuentaRegresivaVisita(
+                Math.ceil((DURACION_BLOQUEO_VISITA - tiempoTranscurrido) / 1000)
+            );
+            mostrarResultado(alumnoActual);
+            return;
+        }
+
+        localStorage.setItem(
+            CLAVE_BLOQUEO_VISITA,
+            String(Date.now())
+        );
+
+        iniciarCuentaRegresivaVisita(60 * 60);
+
+
+        /* =================================================
            REGISTRAR VISITA DEL ESTUDIANTE
         ================================================= */
 
         try {
 
-            await fetch(
+            const respuestaVisita = await fetch(
 
                 `${SUPABASE_URL}/rest/v1/rpc/registrar_visita_estudiante`,
 
@@ -809,6 +1139,7 @@ async function consultarNota() {
                 }
 
             );
+
 
         }
 
@@ -844,10 +1175,119 @@ async function consultarNota() {
 
 
 /* =================================================
+   CALCULAR NOTA DEL 3ER TRIMESTRE Y ANUAL EN HTML
+================================================= */
+
+/*
+ * La BD solamente identifica al estudiante y entrega 1T y 2T.
+ * El 3T se obtiene de las actividades del 3er trimestre y sus
+ * calificaciones. Se conserva la lógica que ya usa el detalle:
+ * promedio de las notas registradas de cada categoría y suma de
+ * las cuatro categorías (SER + SABER + HACER + AUTOEVALUACIÓN).
+ */
+async function calcularNota3T(alumno) {
+
+    if (!alumno || !alumno.id || !alumno.curso) {
+        return null;
+    }
+
+    try {
+        const respuestaActividades = await fetch(
+            `${SUPABASE_URL}/rest/v1/actividades?` +
+            `curso=eq.${encodeURIComponent(alumno.curso)}` +
+            `&trimestre=eq.3` +
+            `&select=id,categoria,puntaje_maximo` +
+            `&order=orden`,
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                }
+            }
+        );
+
+        if (!respuestaActividades.ok) {
+            throw new Error("No se pudieron cargar las actividades del 3er trimestre");
+        }
+
+        const actividades = await respuestaActividades.json();
+        if (!actividades.length) return null;
+
+        const ids = actividades.map(a => a.id);
+
+        const respuestaNotas = await fetch(
+            `${SUPABASE_URL}/rest/v1/calificaciones?` +
+            `estudiante_id=eq.${alumno.id}` +
+            `&actividad_id=in.(${ids.join(",")})` +
+            `&select=actividad_id,nota`,
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                }
+            }
+        );
+
+        if (!respuestaNotas.ok) {
+            throw new Error("No se pudieron cargar las calificaciones del 3er trimestre");
+        }
+
+        const calificaciones = await respuestaNotas.json();
+        const mapa = {};
+        calificaciones.forEach(c => { mapa[c.actividad_id] = c.nota; });
+
+        const categorias = ["SER", "SABER", "HACER", "AUTOEVALUACION"];
+        let nota3 = 0;
+        let hayNotas = false;
+
+        categorias.forEach(codigo => {
+            const lista = actividades.filter(a => a.categoria === codigo);
+            let suma = 0;
+            let cantidad = 0;
+
+            lista.forEach(actividad => {
+                const nota = mapa[actividad.id];
+                if (nota !== null && nota !== undefined && nota !== "") {
+                    const numero = Number(nota);
+                    if (!isNaN(numero)) {
+                        suma += numero;
+                        cantidad++;
+                    }
+                }
+            });
+
+            if (cantidad > 0) {
+                nota3 += suma / cantidad;
+                hayNotas = true;
+            }
+        });
+
+        return hayNotas ? Math.round(nota3) : null;
+
+    } catch (error) {
+        console.error("No se pudo calcular la nota del 3er trimestre en HTML:", error);
+        return null;
+    }
+}
+
+function calcularNotaAnual(nota1, nota2, nota3) {
+    const notas = [nota1, nota2, nota3]
+        .filter(n => n !== null && n !== undefined && !isNaN(Number(n)))
+        .map(Number);
+
+    if (!notas.length) return null;
+
+    return Math.round(
+        notas.reduce((suma, nota) => suma + nota, 0) / notas.length
+    );
+}
+
+
+/* =================================================
    MOSTRAR RESULTADO
 ================================================= */
 
-function mostrarResultado(alumno) {
+async function mostrarResultado(alumno) {
 
     const nota1 =
         redondearNota(alumno.nota_1t);
@@ -855,11 +1295,12 @@ function mostrarResultado(alumno) {
     const nota2 =
         redondearNota(alumno.nota_2t);
 
-    const nota3 =
-        redondearNota(alumno.nota_3t);
+    // El 3er trimestre y la nota anual se calculan directamente
+    // en este HTML a partir de las actividades y calificaciones.
+    const nota3 = await calcularNota3T(alumno);
 
     const final =
-        redondearNota(alumno.final);
+        calcularNotaAnual(nota1, nota2, nota3);
 
     let claseFinal = "";
 
@@ -1063,6 +1504,21 @@ function mostrarResultado(alumno) {
 
         </div>
 
+        ${
+            String(alumno.curso || "").trim().toUpperCase() === "5A"
+            ? `
+                <button
+                    type="button"
+                    class="boton-centralizador"
+                    onclick="mostrarCentralizador()"
+                >
+                    📊 Ver mis notas de todas las materias
+                </button>
+                <div id="centralizador5A"></div>
+              `
+            : ""
+        }
+
     `;
 
 
@@ -1070,6 +1526,168 @@ function mostrarResultado(alumno) {
 
 }
 
+
+
+/* =================================================
+   CENTRALIZADOR DE NOTAS - SOLO 5A
+================================================= */
+
+const MATERIAS_CENTRALIZADOR = [
+    ["LCO", "LENGUA CASTELLANA, ORIGINARIA Y EXTRANJERA"],
+    ["LEX", "LENGUA EXTRANJERA"],
+    ["SOC", "CIENCIAS SOCIALES"],
+    ["EFD", "EDUCACIÓN FÍSICA Y DEPORTES"],
+    ["EMU", "EDUCACIÓN MUSICAL"],
+    ["APV", "ARTES PLÁSTICAS Y VISUALES"],
+    ["MAT", "MATEMÁTICA"],
+    ["BIO", "CIENCIAS NATURALES: BIOLOGÍA GEOGRAFÍA"],
+    ["FIS", "CIENCIAS NATURALES: FÍSICA"],
+    ["QMC", "CIENCIAS NATURALES: QUÍMICA"],
+    ["CFS", "COSMOVISIONES FILOSOFÍA Y PSICOLOGÍA"],
+    ["VER", "VALORES ESPIRITUALIDAD Y RELIGIONES"],
+    ["TTE", "TÉCNICA TECNOLÓGICA ESPECIALIZADA"]
+];
+
+function mostrarValorCentralizador(valor) {
+    if (valor === null || valor === undefined || valor === "") {
+        return '<span class="sin-nota">—</span>';
+    }
+    const numero = Number(valor);
+    if (isNaN(numero)) {
+        return '<span class="sin-nota">' + escapeHTML(String(valor)) + '</span>';
+    }
+    return '<span class="nota-centralizador">' + Math.round(numero) + '</span>';
+}
+
+async function mostrarCentralizador() {
+
+    const contenedor = document.getElementById("centralizador5A");
+
+    if (!contenedor || !alumnoActual) return;
+
+    if (String(alumnoActual.curso || "").trim().toUpperCase() !== "5A") {
+        return;
+    }
+
+    if (contenedor.innerHTML.trim() !== "") {
+        contenedor.innerHTML = "";
+        return;
+    }
+
+    contenedor.innerHTML =
+        '<p class="cargando">Cargando notas de todas las materias...</p>';
+
+    try {
+
+        const respuesta = await fetch(
+            `${SUPABASE_URL}/rest/v1/centralizador?` +
+            `ci=eq.${encodeURIComponent(alumnoActual.ci || "")}` +
+            `&select=*`,
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                }
+            }
+        );
+
+        if (!respuesta.ok) {
+            const detalleError = await respuesta.text();
+            console.error("Error centralizador Supabase:", detalleError);
+            throw new Error("Error al consultar centralizador: " + detalleError);
+        }
+
+        const datos = await respuesta.json();
+
+        if (!datos.length) {
+            contenedor.innerHTML = `
+                <div class="centralizador-box">
+                    <div class="centralizador-titulo">
+                        📊 NOTAS DE TODAS LAS MATERIAS
+                    </div>
+                    <p style="text-align:center;color:#666;line-height:1.5;">
+                        No se encontraron notas en el centralizador.
+                    </p>
+                </div>
+            `;
+            return;
+        }
+
+        const centralizador = datos[0];
+
+        let filas = "";
+
+        // PostgreSQL convierte los nombres de columnas sin comillas a minúsculas.
+        // Por eso se prueban tanto MAYÚSCULAS como minúsculas para mostrar las notas.
+        const obtenerNotaCentralizador = (codigo, periodo) => {
+            const nombreColumna = codigo + periodo;
+            return centralizador[nombreColumna] ?? centralizador[nombreColumna.toLowerCase()];
+        };
+
+        MATERIAS_CENTRALIZADOR.forEach(([codigo, nombre]) => {
+
+            filas += `
+                <tr>
+                    <td>${escapeHTML(nombre)}</td>
+                    <td>${mostrarValorCentralizador(obtenerNotaCentralizador(codigo, "1"))}</td>
+                    <td>${mostrarValorCentralizador(obtenerNotaCentralizador(codigo, "2"))}</td>
+                    <td>${mostrarValorCentralizador(obtenerNotaCentralizador(codigo, "3"))}</td>
+                    <td>${mostrarValorCentralizador(obtenerNotaCentralizador(codigo, "A"))}</td>
+                </tr>
+            `;
+        });
+
+        contenedor.innerHTML = `
+            <div class="centralizador-box">
+
+                <div class="centralizador-titulo">
+                    📊 NOTAS DE TODAS LAS MATERIAS
+                </div>
+
+                <div style="text-align:center;color:#666;font-size:13px;margin-bottom:12px;">
+                    Curso: 5A
+                </div>
+
+                <div class="centralizador-tabla-contenedor">
+                    <table class="centralizador-tabla">
+
+                        <thead>
+                            <tr>
+                                <th>Materia</th>
+                                <th>1er Trimestre</th>
+                                <th>2do Trimestre</th>
+                                <th>3er Trimestre</th>
+                                <th>Promedio Anual</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>${filas}</tbody>
+
+                    </table>
+                </div>
+
+            </div>
+        `;
+
+    } catch (error) {
+
+        console.error(error);
+
+        contenedor.innerHTML = `
+            <div class="centralizador-box">
+                <div class="centralizador-titulo">
+                    📊 NOTAS DE TODAS LAS MATERIAS
+                </div>
+                <p class="error">
+                    No se pudo cargar el centralizador de notas.
+                </p>
+                <p style="font-size:12px;color:#777;text-align:center;line-height:1.4;">
+                    La consulta del centralizador debe utilizar la columna <b>ci</b>.
+                </p>
+            </div>
+        `;
+    }
+}
 
 /* =================================================
    DETALLES DEL 3ER TRIMESTRE
@@ -1602,9 +2220,7 @@ async function mostrarDetalles() {
 
 
         const nota3 =
-            redondearNota(
-                alumnoActual.nota_3t
-            );
+            await calcularNota3T(alumnoActual);
 
 
         html += `
@@ -1724,7 +2340,7 @@ async function mostrarAsistenciaEnDetalle() {
 
                 `&fecha=lte.${FIN_3T}` +
 
-                `&select=id,fecha,estado,observacion` +
+                `&select=id,fecha,hora,estado,observacion` +
 
                 `&order=fecha.desc`,
 
@@ -1757,6 +2373,32 @@ async function mostrarAsistenciaEnDetalle() {
         const asistencias =
             await respuesta.json();
 
+        // También se consultan los días en los que no se pasó clases.
+        // Estos registros no pertenecen a la tabla "asistencia", por eso
+        // se cargan desde "asistencia_tipos_dia".
+        const respuestaTiposDia = await fetch(
+            `${SUPABASE_URL}/rest/v1/asistencia_tipos_dia?` +
+            `curso=eq.${encodeURIComponent(alumnoActual.curso || "")}` +
+            `&fecha=gte.${INICIO_3T}` +
+            `&fecha=lte.${FIN_3T}` +
+            `&tipo=in.(no_clases,clase_informal)` +
+            `&select=fecha,tipo,motivo` +
+            `&order=fecha.desc`,
+            {
+                headers: {
+                    "apikey": SUPABASE_KEY,
+                    "Authorization": `Bearer ${SUPABASE_KEY}`
+                }
+            }
+        );
+
+        if (!respuestaTiposDia.ok) {
+            throw new Error("Error al consultar los días sin clases");
+        }
+
+        const diasNoClases =
+            await respuestaTiposDia.json();
+
 
         let presentes = 0;
 
@@ -1769,6 +2411,13 @@ async function mostrarAsistenciaEnDetalle() {
 
         asistencias.forEach(
             asistencia => {
+
+                // La asistencia de una clase informal se muestra, pero no se cuenta.
+                const esClaseInformal = diasNoClases.some(
+                    dia => String(dia.fecha) === String(asistencia.fecha) &&
+                           String(dia.tipo || '').toLowerCase() === 'clase_informal'
+                );
+                if (esClaseInformal) return;
 
                 const estado =
                     normalizarEstado(
@@ -1812,33 +2461,67 @@ async function mostrarAsistenciaEnDetalle() {
         );
 
 
+        /*
+         * Unir asistencia normal + días especiales y ordenar TODO por fecha.
+         * Así "Clase informal" y "No se pasó clases" aparecen en su lugar
+         * cronológico correspondiente.
+         */
+        const registrosAsistencia = [
+            ...asistencias.map(asistencia => ({
+                fecha: asistencia.fecha,
+                tipoRegistro: "asistencia",
+                datos: asistencia
+            })),
+            ...diasNoClases.map(dia => ({
+                fecha: dia.fecha,
+                tipoRegistro: String(dia.tipo || "").toLowerCase(),
+                datos: dia
+            }))
+        ].sort((a, b) => {
+            const comparacion =
+                String(a.fecha || "").localeCompare(String(b.fecha || ""));
+
+            if (comparacion !== 0) return comparacion;
+
+            // Si dos registros tienen la misma fecha, la asistencia
+            // normal aparece primero.
+            if (a.tipoRegistro === "asistencia" && b.tipoRegistro !== "asistencia") return -1;
+            if (a.tipoRegistro !== "asistencia" && b.tipoRegistro === "asistencia") return 1;
+
+            return 0;
+        });
+
+
         let filas = "";
 
 
-        asistencias.forEach(
-            asistencia => {
+        registrosAsistencia.forEach(registro => {
+
+            if (registro.tipoRegistro === "asistencia") {
+
+                const asistencia = registro.datos;
 
                 const estado =
                     normalizarEstado(
                         asistencia.estado
                     );
 
-
                 const informacion =
                     obtenerEstadoAsistencia(
                         estado
                     );
 
+                const claseInformalMismaFecha = diasNoClases.find(
+                    dia => String(dia.tipo || "").toLowerCase() === "clase_informal" &&
+                           String(dia.fecha || "") === String(asistencia.fecha || "")
+                );
 
                 const observacion =
-
                     asistencia.observacion
-
-                    ? escapeHTML(
-                        asistencia.observacion
-                    )
-
-                    : "—";
+                    ? escapeHTML(asistencia.observacion)
+                    : (claseInformalMismaFecha?.motivo
+                        ? `<strong>Motivo:</strong> ${escapeHTML(String(claseInformalMismaFecha.motivo).trim())}`
+                        : "—");
 
 
                 filas += `
@@ -1856,6 +2539,13 @@ async function mostrarAsistenciaEnDetalle() {
 
                         <td>
 
+                            ${asistencia.hora ? escapeHTML(String(asistencia.hora).substring(0, 5)) : ""}
+
+                        </td>
+
+
+                        <td>
+
                             <span class="
                                 estado-asistencia
                                 ${informacion.clase}
@@ -1866,6 +2556,9 @@ async function mostrarAsistenciaEnDetalle() {
                                 ${informacion.nombre}
 
                             </span>
+                            ${claseInformalMismaFecha
+                                ? `<div class="estado-clase-informal" style="margin-top:5px;">ℹ️ Clase informal</div>`
+                                : ""}
 
                         </td>
 
@@ -1880,16 +2573,123 @@ async function mostrarAsistenciaEnDetalle() {
 
                 `;
 
+                return;
             }
-        );
+
+
+            const dia = registro.datos;
+
+            const esClaseInformal =
+                registro.tipoRegistro === "clase_informal";
+
+            const motivo =
+                dia.motivo && String(dia.motivo).trim()
+                ? escapeHTML(String(dia.motivo).trim())
+                : "";
+
+
+            if (esClaseInformal) {
+
+                const tieneAsistenciaMismaFecha = asistencias.some(
+                    asistencia => String(asistencia.fecha || "") === String(dia.fecha || "")
+                );
+
+                if (tieneAsistenciaMismaFecha) {
+                    return;
+                }
+
+                filas += `
+
+                    <tr class="dia-clase-informal">
+
+                        <td>
+
+                            ${formatearFecha(
+                                dia.fecha
+                            )}
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="estado-clase-informal">
+
+                                ℹ️ Clase informal
+
+                            </span>
+
+                        </td>
+
+
+                        <td class="observacion motivo-clase-informal-detalle">
+
+                            ${motivo
+                                ? `<strong>Motivo:</strong> ${motivo}`
+                                : "Clase informal registrada."
+                            }
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+            }
+
+
+            const motivoNoClases =
+                motivo || "No se registró el motivo.";
+
+
+            filas += `
+
+                <tr class="dia-no-clases">
+
+                    <td>
+
+                        ${formatearFecha(
+                            dia.fecha
+                        )}
+
+                    </td>
+
+
+                    <td>
+
+                        <span class="estado-no-clases">
+
+                            🚫 No se pasó clases
+
+                        </span>
+
+                    </td>
+
+
+                    <td class="observacion motivo-no-clases-detalle">
+
+                        <strong>Motivo:</strong> ${motivoNoClases}
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+
+        // Se muestra la tabla si existe asistencia normal o algún día sin clases.
+        const hayRegistrosAsistencia =
+            asistencias.length > 0 ||
+            diasNoClases.length > 0;
 
 
         let contenidoTabla = "";
 
 
-        if (
-            asistencias.length === 0
-        ) {
+        if (!hayRegistrosAsistencia) {
 
             contenidoTabla = `
 
@@ -1919,6 +2719,12 @@ async function mostrarAsistenciaEnDetalle() {
                                 <th>
 
                                     📅 Fecha
+
+                                </th>
+
+                                <th>
+
+                                    Hora
 
                                 </th>
 
@@ -2581,6 +3387,8 @@ const parametros =
 const ci =
     parametros.get("ci");
 
+const fechaNacimiento =
+    parametros.get("fecha_nacimiento");
 
 if (ci) {
 
@@ -2589,9 +3397,295 @@ if (ci) {
 
 }
 
+if (fechaNacimiento) {
+
+    document.getElementById("fecha_nacimiento").value =
+        fechaNacimiento;
+
+}
 </script>
 
 
+
+<!-- Gatito interactivo: elemento independiente del sistema de notas -->
+<div id="gatoInteractivo" aria-label="Gatito interactivo" title="Acaríciame 🐾">
+    <div id="gatoMensaje"></div>
+    <div id="gatoCorazones">💗</div>
+    <div id="gatoCuerpo">🐱</div>
+</div>
+
+<script>
+/* =================================================
+   GATITO INTERACTIVO - NO INTERFIERE CON LAS NOTAS
+================================================= */
+(function () {
+    const gato = document.getElementById('gatoInteractivo');
+    const cuerpo = document.getElementById('gatoCuerpo');
+    const mensaje = document.getElementById('gatoMensaje');
+    if (!gato || !cuerpo) return;
+
+    let arrastrando = false, desplazado = false, inicioX = 0, inicioY = 0, baseX = 0, baseY = 0;
+    let mensajeTimer = null;
+
+    /* =================================================
+       SONIDOS DEL GATITO - SIN ARCHIVOS EXTERNOS
+       Se generan con Web Audio para que la página siga
+       funcionando sin conexión. El sonido se activa con
+       la primera interacción del estudiante.
+    ================================================= */
+    let audioCtx = null;
+    let sonidoActivado = false;
+
+    function activarSonido() {
+        try {
+            if (!audioCtx) {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                audioCtx = new AudioContext();
+            }
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            sonidoActivado = true;
+        } catch (e) {}
+    }
+
+    function tono(frecuencia, duracion, tipo = 'sine', volumen = 0.035, inicio = 0) {
+        if (!sonidoActivado || !audioCtx) return;
+        try {
+            const ahora = audioCtx.currentTime + inicio;
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = tipo;
+            osc.frequency.setValueAtTime(frecuencia, ahora);
+            gain.gain.setValueAtTime(0.0001, ahora);
+            gain.gain.exponentialRampToValueAtTime(volumen, ahora + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.0001, ahora + duracion);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(ahora);
+            osc.stop(ahora + duracion + 0.02);
+        } catch (e) {}
+    }
+
+    function sonidoMiau() {
+        tono(620, 0.18, 'sine', 0.045);
+        tono(820, 0.22, 'sine', 0.035, 0.10);
+    }
+
+    function sonidoFeliz() {
+        tono(660, 0.12, 'sine', 0.035);
+        tono(830, 0.12, 'sine', 0.035, 0.10);
+        tono(1040, 0.20, 'sine', 0.04, 0.20);
+    }
+
+    function sonidoSorpresa() {
+        tono(900, 0.10, 'triangle', 0.04);
+        tono(1250, 0.20, 'triangle', 0.045, 0.08);
+    }
+
+    function sonidoRonroneo() {
+        if (!sonidoActivado || !audioCtx) return;
+        tono(105, 0.16, 'sine', 0.018);
+        tono(125, 0.16, 'sine', 0.014, 0.18);
+        tono(105, 0.16, 'sine', 0.018, 0.36);
+    }
+
+    function decir(texto, tiempo = 1800) {
+        mensaje.textContent = texto;
+        gato.classList.add('mensaje');
+        clearTimeout(mensajeTimer);
+        mensajeTimer = setTimeout(() => gato.classList.remove('mensaje'), tiempo);
+    }
+
+    function acariciar() {
+        activarSonido();
+        sonidoMiau();
+        sonidoRonroneo();
+        gato.classList.remove('caricia');
+        void gato.offsetWidth;
+        gato.classList.add('caricia');
+        gato.classList.add('mirando');
+        decir('¡Miau! 🐾');
+        setTimeout(() => gato.classList.remove('caricia'), 1000);
+    }
+
+    gato.addEventListener('pointerdown', e => {
+        activarSonido();
+        arrastrando = true;
+        desplazado = false;
+        inicioX = e.clientX; inicioY = e.clientY;
+        const r = gato.getBoundingClientRect();
+        baseX = r.left; baseY = r.top;
+        gato.setPointerCapture?.(e.pointerId);
+    });
+
+    gato.addEventListener('pointermove', e => {
+        if (!arrastrando) return;
+        const dx = e.clientX - inicioX, dy = e.clientY - inicioY;
+        if (Math.abs(dx) + Math.abs(dy) > 6) desplazado = true;
+        gato.style.left = Math.max(4, Math.min(window.innerWidth - gato.offsetWidth - 4, baseX + dx)) + 'px';
+        gato.style.top = Math.max(4, Math.min(window.innerHeight - gato.offsetHeight - 4, baseY + dy)) + 'px';
+        gato.style.bottom = 'auto';
+    });
+
+    gato.addEventListener('pointerup', e => {
+        arrastrando = false;
+        if (!desplazado) acariciar();
+        gato.releasePointerCapture?.(e.pointerId);
+    });
+
+    gato.addEventListener('dblclick', () => {
+        activarSonido();
+        sonidoSorpresa();
+        decir('¡Qué lindo! 😻');
+        gato.classList.add('sorprendido');
+        setTimeout(() => gato.classList.remove('sorprendido'), 700);
+    });
+
+    /* Detecta qué hay debajo del gatito cuando el estudiante lo coloca encima. */
+    let ultimoObjetivo = '';
+    let ultimaReaccionObjetivo = 0;
+
+    function elementoDebajoDelGato() {
+        const r = gato.getBoundingClientRect();
+        const x = r.left + r.width / 2;
+        const y = r.top + r.height / 2;
+        const elementos = document.elementsFromPoint ? document.elementsFromPoint(x, y) : [];
+        return elementos.find(el => el !== gato && !gato.contains(el) && el !== document.body && el !== document.documentElement);
+    }
+
+    function reaccionarSobre(texto) {
+        const t = (texto || '').replace(/\s+/g, ' ').trim();
+        if (!t) return;
+        const clave = t.toLowerCase().slice(0, 180);
+        const ahora = Date.now();
+        if (clave === ultimoObjetivo && ahora - ultimaReaccionObjetivo < 7000) return;
+        ultimoObjetivo = clave;
+        ultimaReaccionObjetivo = ahora;
+
+        let respuesta = '';
+        let emoji = '🐱';
+        if (/asistencia|faltas|inasistencia|presen(te|cia)/i.test(t)) {
+            const opciones = [
+                '¡A cuidar la asistencia! 🐾',
+                'Cada día cuenta. ¡Tú puedes! 💪',
+                '¡Presente y con ganas de aprender! 😺',
+                'Pocas faltas, muchas oportunidades. 🌟'
+            ];
+            respuesta = opciones[Math.floor(Math.random() * opciones.length)];
+            emoji = '👀';
+        } else if (/nota|calificaci[oó]n|promedio|trimestre|anual|puntos|ser|saber|hacer|autoevaluaci[oó]n/i.test(t)) {
+            const opciones = [
+                '¡Tú puedes mejorar cada nota! 🌟',
+                '¡Un pequeño esfuerzo puede hacer una gran diferencia! 💪',
+                'No mires sólo el número: ¡mira cuánto has aprendido! 🧠',
+                '¡Vamos por esa próxima nota! 🚀',
+                '¡Estoy vigilando el progreso! 👀🐾'
+            ];
+            respuesta = opciones[Math.floor(Math.random() * opciones.length)];
+            emoji = /7[0-9]|8[0-9]|9[0-9]|100/.test(t) ? '😻' : '🤔';
+        } else if (/estudiante|nombre|curso|materia|matem[aá]tica/i.test(t)) {
+            respuesta = '¡Aquí está tu información! 😺';
+            emoji = '😺';
+        }
+
+        if (respuesta) {
+            cuerpo.textContent = emoji;
+            gato.classList.add('mirando');
+            decir(respuesta, 2600);
+            if (emoji === '😻') sonidoFeliz();
+            else if (Math.random() < .35) sonidoMiau();
+            setTimeout(() => { if (!arrastrando) cuerpo.textContent = '🐱'; }, 2600);
+        }
+    }
+
+    function revisarDebajoDelGato() {
+        if (arrastrando) return;
+        const el = elementoDebajoDelGato();
+        if (!el) return;
+        const texto = el.innerText || el.textContent || '';
+        reaccionarSobre(texto);
+    }
+
+    function hacerBroma() {
+        if (arrastrando || document.hidden) return;
+        const bromas = [
+            ['😹', '¡Ups! Creo que estaba estudiando al revés 😂'],
+            ['🙈', '¡No me mires! Yo también necesito estudiar 😅'],
+            ['😴', 'Zzz… ¡Era una mini siesta académica! 💤'],
+            ['🤓', '¡Momento de ponerse las gafas de estudiante! 🤓'],
+            ['😼', 'Estoy vigilando… pero con estilo 😎🐾'],
+            ['🙀', '¡Esa nota me hizo saltar! 😲'],
+            ['😺', '¡Sigue así! Cada esfuerzo cuenta. 🌟']
+        ];
+        const b = bromas[Math.floor(Math.random() * bromas.length)];
+        cuerpo.textContent = b[0];
+        gato.classList.add(Math.random() < .5 ? 'gracioso' : 'saltando');
+        decir(b[1], 2300);
+        if (b[0] === '🙀') sonidoSorpresa();
+        else if (b[0] === '😺') sonidoFeliz();
+        else sonidoMiau();
+        setTimeout(() => {
+            gato.classList.remove('gracioso', 'saltando', 'asustado');
+            if (!arrastrando) cuerpo.textContent = '🐱';
+        }, 900);
+    }
+
+    function observarResultado() {
+        const resultado = document.getElementById('resultado');
+        if (!resultado) return;
+        const texto = resultado.innerText || '';
+        if (/Buscando|Cargando/i.test(texto)) {
+            cuerpo.textContent = '🐱';
+            gato.classList.add('mirando');
+            decir('Estoy mirando las notas… 👀', 1600);
+            return;
+        }
+        if (/error|incorrectos|Error de conexión/i.test(texto)) {
+            cuerpo.textContent = '🙀';
+            sonidoSorpresa();
+            gato.classList.add('sorprendido');
+            decir('¡Ups! 😿', 1800);
+            return;
+        }
+        if (texto.trim()) {
+            gato.classList.add('mirando');
+            const notas = [...texto.matchAll(/(?:nota|calificación|promedio|final)[^0-9]{0,25}(\d{1,2})/gi)].map(m => Number(m[1])).filter(n => n >= 0 && n <= 100);
+            if (notas.length && Math.max(...notas) >= 70) {
+                cuerpo.textContent = '😺';
+                sonidoFeliz();
+                decir('¡Muy bien! 🎉', 2200);
+            } else {
+                cuerpo.textContent = '🐱';
+                decir('Estoy mirando tus notas 👀', 2200);
+            }
+        }
+    }
+
+    const resultado = document.getElementById('resultado');
+    if (resultado) new MutationObserver(observarResultado).observe(resultado, {childList:true, subtree:true, characterData:true});
+
+    setInterval(() => {
+        revisarDebajoDelGato();
+        const r = document.getElementById('resultado');
+        const t = r ? (r.innerText || '') : '';
+        if (/asistencia/i.test(t)) {
+            gato.classList.add('mirando');
+            if (Math.random() < .25) decir('También miro la asistencia 👀', 1800);
+        }
+    }, 1200);
+
+    /* De vez en cuando hace alguna travesura por su cuenta. */
+    let proximaBroma = Date.now() + 12000 + Math.random() * 18000;
+    setInterval(() => {
+        if (Date.now() >= proximaBroma) {
+            hacerBroma();
+            proximaBroma = Date.now() + 18000 + Math.random() * 30000;
+        }
+    }, 2000);
+
+    setTimeout(() => decir('¡Hola! 🐾', 1800), 900);
+})();
+</script>
 </body>
 
 </html>
