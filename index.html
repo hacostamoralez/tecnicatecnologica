@@ -1299,8 +1299,11 @@ async function mostrarResultado(alumno) {
     // en este HTML a partir de las actividades y calificaciones.
     const nota3 = await calcularNota3T(alumno);
 
+    // La nota final solo se muestra cuando existe nota del 3er trimestre.
     const final =
-        calcularNotaAnual(nota1, nota2, nota3);
+        nota3 === null
+        ? null
+        : calcularNotaAnual(nota1, nota2, nota3);
 
     let claseFinal = "";
 
@@ -1461,12 +1464,12 @@ async function mostrarResultado(alumno) {
 
                 <div class="final-titulo">
 
-                    NOTA 2º TRIMESTRE
+                    NOTA FINAL PROVISIONAL
 
                 </div>
 
 
-                <div class="numero t2 ${nota2}">
+                <div class="nota-final ${claseFinal}">
 
                     ${
                         final === null
@@ -1482,12 +1485,12 @@ async function mostrarResultado(alumno) {
 
                     ? `
 
-                        <div class="estado ${nota2}">
+                        <div class="estado ${claseFinal}">
 
                             ${
                                 final <= 50
-                                ? " "
-                                : ""
+                                ? "REPROBADO"
+                                : "APROBADO"
                             }
 
                         </div>
