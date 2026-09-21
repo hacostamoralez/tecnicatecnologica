@@ -293,11 +293,39 @@ button:hover {
 }
 
 .actividad-obs-entrega {
-    margin-top: 3px;
-    font-size: 12px;
+    margin-top: 4px;
+    font-size: 13px;
     font-weight: bold;
     color: #e65100;
-    line-height: 1.3;
+    line-height: 1.35;
+}
+
+.actividad-estado-entrega {
+    display: block;
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.35;
+}
+
+.actividad-estado-puntual {
+    color: #2e7d32;
+}
+
+.actividad-estado-atrasado {
+    color: #e65100;
+}
+
+.actividad-estado-no-presento {
+    color: #c62828;
+}
+
+.actividad-fecha-entrega {
+    display: block;
+    margin-top: 3px;
+    color: #666;
+    font-size: 12px;
+    font-weight: normal;
 }
 
 .actividad-observacion {
@@ -747,7 +775,7 @@ button:hover {
 
     <div class="institucion">
 
-        U.E. MANUEL ASCENCIO PADILLA
+        U.E. MANUEL ASCENCIO PADILLA 
 
     </div>
 
@@ -2302,25 +2330,18 @@ async function mostrarDetalles() {
                                     ${
                                         notaSinPresentar
                                         ? `
-                                    <span class="actividad-entrega">
-                                        🕐 Presentación: <span style="color:red;font-weight:bold;">No presentó</span>
+                                    <span class="actividad-estado-entrega actividad-estado-no-presento">
+                                        ❌ No presentó
                                     </span>
                                         `
                                         : fechaEntrega
                                         ? `
-                                    <span class="actividad-entrega">
-                                        🕐 Presentación: ${escapeHTML(presentacion)}
+                                    <span class="actividad-estado-entrega ${obsEntrega === 'Puntual' ? 'actividad-estado-puntual' : 'actividad-estado-atrasado'}">
+                                        ${obsEntrega === 'Puntual' ? '✅' : '🕐'} ${escapeHTML(obsEntrega)}
                                     </span>
-
-                                    ${
-                                        obsEntrega
-                                        ? `
-                                    <span class="actividad-obs-entrega" style="${obsEntrega === 'Puntual' ? 'color: green;' : ''}">
-                                        ${escapeHTML(obsEntrega)}
+                                    <span class="actividad-fecha-entrega">
+                                        📅 ${escapeHTML(presentacion)}
                                     </span>
-                                        `
-                                        : ""
-                                    }
                                         `
                                         : ""
                                     }
@@ -2331,6 +2352,8 @@ async function mostrarDetalles() {
                                 <div class="actividad-nota">
 
                                     <div>
+
+                                        <span style="display:block;font-size:11px;color:#777;font-weight:normal;margin-bottom:2px;">Calificación</span>
 
                                         ${valor}
 
